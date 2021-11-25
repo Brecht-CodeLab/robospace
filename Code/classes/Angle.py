@@ -21,6 +21,7 @@ class Angle:
         self.l2 = l[1]
 
 
+
     def calcJacob(self, a):
         a0 = a[0]
         a1 = a[1]
@@ -38,7 +39,7 @@ class Angle:
         return J
 
 
-    def newAngle(self, eps=1e-9, max_iter=1000):
+    def newAngles(self, eps=1e-9, max_iter=1000):
         l1 = self.l1
         l2 = self.l2
         new_a = self.a
@@ -49,8 +50,13 @@ class Angle:
             J = self.calcJacob(new_a)
             f = np.array([l1*cos(a0)*cos(a1)+l2*cos(a0)*cos(a1+a2), l1*sin(a0)*cos(a1)+l2*cos(a0)*sin(a1+a2), l1*sin(a1)+l2*sin(a1+a2)])
         
+            e = self.pos - f
+            new_a = new_a + np.dot(np.linalg.inv(J),e)
+            print(new_a)
+            if(np.linalg.norm(e) < eps):
+                break
         
-        return
+        return new_a
 
 
     

@@ -1,4 +1,11 @@
-from classes import Angle, Connection
+from classes.Angle import Angle
+from classes.Connection import Connection
+import numpy as np
 
-L = [1,1]
-angle = []
+L = np.array([1,1])
+angle = np.array([0.2, 0.56, 1.58])
+pos = np.array([1,1,1])
+
+next_angles = Angle(angle, pos, L)
+
+print(next_angles.newAngles())
