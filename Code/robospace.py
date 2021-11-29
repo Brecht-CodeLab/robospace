@@ -4,7 +4,7 @@ import numpy as np
 
 L = np.array([1,1])
 angle = np.array([np.pi/2, 0.56, 1.58])
-pos = np.array([1,1,1])
+pos = np.array([0,0,1])
 
 next_angles = Angle(angle, pos, L)
 

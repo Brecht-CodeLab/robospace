@@ -52,10 +52,11 @@ class Angle:
         
             e = self.pos - f
             new_a = new_a + np.dot(np.linalg.inv(J),e)
-            print(J)
-            print(new_a)
+            # print(J)
+            # print(new_a)
             if(np.linalg.norm(e) < eps):
-                print(f)
+                # print(f)
+                # print(np.cos(new_a[0]))
                 break
         
         return new_a
