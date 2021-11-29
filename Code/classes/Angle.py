@@ -32,7 +32,7 @@ class Angle:
 
         J = np.array([
             [-l1*sin(a0)*cos(a1)-l2*sin(a0)*cos(a1+a2), -l1*cos(a0)*sin(a1)-l2*cos(a0)*sin(a1+a2), -l2*cos(a0)*sin(a1+a2)],
-            [-l1*sin(a0)*cos(a1)+l2*cos(a0)*sin(a1+a2), -l1*sin(a0)*sin(a1)-l2*cos(a0)*cos(a1+a2), l2*cos(a2)*cos(a1+a2)],
+            [l1*cos(a0)*cos(a1)+l2*cos(a0)*cos(a1+a2), -l1*sin(a0)*sin(a1)-l2*sin(a0)*sin(a1+a2), -l2*cos(a2)*sin(a1+a2)],
             [0, l1*cos(a1)+l2*cos(a1+a2), l2*cos(a1+a2)]
         ])
 
@@ -48,12 +48,14 @@ class Angle:
             a1 = new_a[1]
             a2 = new_a[2]
             J = self.calcJacob(new_a)
-            f = np.array([l1*cos(a0)*cos(a1)+l2*cos(a0)*cos(a1+a2), l1*sin(a0)*cos(a1)+l2*cos(a0)*sin(a1+a2), l1*sin(a1)+l2*sin(a1+a2)])
+            f = np.array([l1*cos(a0)*cos(a1)+l2*cos(a0)*cos(a1+a2), l1*sin(a0)*cos(a1)+l2*sin(a0)*cos(a1+a2), l1*sin(a1)+l2*sin(a1+a2)])
         
             e = self.pos - f
             new_a = new_a + np.dot(np.linalg.inv(J),e)
+            print(J)
             print(new_a)
             if(np.linalg.norm(e) < eps):
+                print(f)
                 break
         
         return new_a
